@@ -84,6 +84,8 @@ test_maps() {
 test_bpftool() {
   foldable start test_bpftool "Testing test_bpftool"
   taskset 0xF ./test_bpftool && true
+  echo "bpftool: $(which bpftool)"
+  echo "bpftool version: $(bpftool --version)"
   echo "test_bpftool:$?" >>"${STATUS_FILE}"
   foldable end test_bpftool
 }
