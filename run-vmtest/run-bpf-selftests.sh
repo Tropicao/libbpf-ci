@@ -81,6 +81,13 @@ test_maps() {
   foldable end test_maps
 }
 
+test_bpftool() {
+  foldable start test_bpftool "Testing test_bpftool"
+  taskset 0xF ./test_bpftool ./tools/sbin/bpftool && true
+  echo "test_bpftool:$?" >>"${STATUS_FILE}"
+  foldable end test_bpftool
+}
+
 test_verifier() {
   foldable start test_verifier "Testing test_verifier"
   ./test_verifier && true
