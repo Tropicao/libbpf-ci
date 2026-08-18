@@ -198,6 +198,14 @@ jobs:
           archive: ${{ env.ARTIFACTS_ARCHIVE }}
           kbuild-output: ${{ env.KBUILD_OUTPUT }}
           repo-root: ${{ env.REPO_ROOT }}
+      - if: ${{ !inputs.release }}
+        name: Test bpftool build
+        uses: ./build-bpftool
+        env:
+          MAX_MAKE_JOBS: 32
+        with:
+          kernel-root: ${{ env.REPO_ROOT }}
+          kbuild-output: ${{ env.KBUILD_OUTPUT }}
       - if: ${{ github.event_name != 'push' }}
         name: Remove KBUILD_OUTPUT content
         shell: bash
